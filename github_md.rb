@@ -4,7 +4,7 @@ require 'github/markdown'
 md = ARGF.read
 
 # processing ``` blocks
-md.gsub! /(?<beg>[`]{3}(?<lang>\w+))(?<code>((?!^[`]{3})[\s\S])*)(?<ending>[`]{3})/im do
+md.gsub! /(?<beg>[`]{3})(?:\n\#\!)?(?<lang>\w+)(?<code>((?!^[`]{3})[\s\S])*)(?<ending>[`]{3})/im do
     beg, lang, body, ending = $~.captures
 
     # removing trailing newlines

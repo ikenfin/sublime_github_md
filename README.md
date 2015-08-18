@@ -2,6 +2,20 @@
 
 Ruby script to provide bridge to [github-markdown gem](https://rubygems.org/gems/github-markdown) for [Sublime Text 3 - Markmon](https://github.com/yyjhao/sublime-text-markmon) plugin.
 
+**Supported codeblock syntax:**<br>
+\`\`\`ruby<br>
+require 'redcarpet'<br>
+markdown = Redcarpet.new("Hello World!")<br>
+puts markdown.to_html<br>
+\`\`\`
+
+\`\`\`<br>
+\#\!ruby<br>
+require 'redcarpet'<br>
+markdown = Redcarpet.new("Hello World!")<br>
+puts markdown.to_html<br>
+\`\`\`
+
 ### Attention!
 
 Script adds syntax highlighting feature, but it depends on [GNU Source-highlight](http://www.gnu.org/software/src-highlite/), so for work you must install it.
@@ -20,14 +34,14 @@ Script adds syntax highlighting feature, but it depends on [GNU Source-highlight
 
 ### Installation
 
-Download and unpack **zip** / clone repo to anywhere you want, for example to `~/scripts/ruby/github_md/`
+Download and unpack **zip** / clone repo to anywhere you want, for example to `~/scripts/ruby/sublime_github_md/`
 
 Open sublime text 3 Markmon user settings, and configure:
 
 ```js
 {
-    "command" : "ruby <PATH_TO_SCRIPT_DIR>/github-markdown/github_md.rb",
-    "stylesheet" : "<PATH_TO_SCRIPT_DIR>/github-markdown/css/github.css"
+    "command" : "ruby <PATH_TO_SCRIPT_DIR>/sublime_github_md/github_md.rb",
+    "stylesheet" : "<PATH_TO_SCRIPT_DIR>/sublime_github_md/css/github.css"
 }
 ```
 
