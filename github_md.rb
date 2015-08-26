@@ -7,16 +7,19 @@ md = ARGF.read
 md.gsub! /(?<beg>[`]{3})(?:\n\#\!)?(?<lang>\w+)(?<code>((?!^[`]{3})[\s\S])*)(?<ending>[`]{3})/im do
     beg, lang, body, ending = $~.captures
 
-    # removing trailing newlines
-    body.strip!
-
     # pass body to source-highlight
     IO.popen('source-highlight -s' + lang + ' --tab=4', 'r+') do | pipe |
-        pipe.puts(body)
+        pipe.puts(body.strip)
         pipe.close_write
-        body = pipe.read()
-    end
+        new_body = pipe.read()
 
+        if new_body.empty?
+            body = '<pre>' + body + '</pre>'
+        else
+            body = new_body
+        end
+    end
+    
     # unwrap <tt> tag
     body.gsub! /\<tt\>(?!\<\/tt\>)*/, "\1"
 
